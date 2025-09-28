@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Drive Contents Viewer",
+    "description": "The name of the extension"
+  },
+  "extensionDescription": {
+    "message": "View and manage your Google Drive contents",
+    "description": "The description of the extension"
+  },
+  "errorOccurred": {
+    "message": "An error occurred: $ERROR$",
+    "description": "Error message",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Network error"
+      }
+    }
+  },
+  "copyLink": {
+    "message": "Copy link",
+    "description": "Text for copy link button"
+  },
+  "linkCopied": {
+    "message": "Link copied",
+    "description": "Feedback message when link is copied"
+  },
+  "viewFile": {
+    "message": "View file",
+    "description": "Text for view file button"
+  }
+}
