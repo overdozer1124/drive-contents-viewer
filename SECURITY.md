@@ -1,133 +1,322 @@
-# セキュリティポリシー
+# 🛡️ セキュリティポリシー
 
-## 🛡️ サポートされるバージョン
+Drive Contents Viewerプロジェクトのセキュリティを真剣に受け止めています。このドキュメントでは、セキュリティの脆弱性を報告する方法と、プロジェクトのセキュリティ対策について説明します。
 
-現在セキュリティアップデートを提供しているバージョン：
+## 📋 目次
+
+- [サポートされているバージョン](#-サポートされているバージョン)
+- [脆弱性の報告](#-脆弱性の報告)
+- [セキュリティ対策](#-セキュリティ対策)
+- [認証とアクセス制御](#-認証とアクセス制御)
+- [データ保護](#-データ保護)
+- [セキュリティベストプラクティス](#-セキュリティベストプラクティス)
+- [定期的な監査](#-定期的な監査)
+
+## 🔍 サポートされているバージョン
+
+以下のバージョンがセキュリティアップデートの対象です：
 
 | バージョン | サポート状況 |
-| ------- | ----------- |
+| ------- | ------------ |
 | 1.0.x   | ✅ サポート中 |
 | < 1.0   | ❌ サポート終了 |
 
-## 🔒 セキュリティの考慮事項
-
-### OAuth2認証
-- Google OAuth2による安全な認証
-- 最小限の権限（読み取り専用）のみ要求
-- アクセストークンは一時的にメモリ内でのみ保持
-
-### データの取り扱い
-- ユーザーデータは外部サーバーに送信されません
-- すべての処理はブラウザ内で完結
-- ファイル内容はプレビューのみ（編集・削除不可）
-
-### 権限
-拡張機能が要求する権限：
-- `activeTab`: アクティブタブの情報取得（Drive URLの検出）
-- `scripting`: スクリプト実行（必要最小限）
-- `tabs`: タブ情報の取得（Drive フォルダID検出）
-- `identity`: OAuth認証（Google Drive API アクセス）
-
 ## 🚨 脆弱性の報告
 
-セキュリティ上の脆弱性を発見した場合は、以下の方法で報告してください：
+### 🔒 責任ある開示
 
-### 報告方法
+セキュリティの脆弱性を発見した場合は、以下の手順に従って報告してください：
 
-1. **機密性の高い脆弱性**
-   - GitHub の [Security Advisories](https://github.com/overdozer1124/drive-contents-viewer/security/advisories) を使用
-   - または、直接メールで連絡（GitHubプロフィールにメールアドレス記載）
+### 1. **即座に報告**
 
-2. **一般的なセキュリティ問題**
-   - GitHub Issues で「security」ラベルを付けて報告
-   - ただし、悪用可能な詳細は記載しないでください
+**公開のIssue追跡システムは使用しないでください。** 代わりに、以下の方法で非公開で報告してください：
 
-### 報告時に含めるべき情報
+- **GitHub Security Advisory**: [プライベート脆弱性報告](https://github.com/overdozer1124/drive-contents-viewer/security/advisories/new)
+- **Email**: セキュリティ問題専用のメールアドレス（[GitHub プロファイル](https://github.com/overdozer1124)から確認）
 
-- 脆弱性の詳細な説明
-- 再現手順
-- 影響範囲・深刻度
-- 可能であれば修正案
-- 発見者の情報（クレジット希望の場合）
+### 2. **報告に含めるべき情報**
 
-### 報告から対応までの流れ
+以下の情報を可能な限り詳細に提供してください：
 
-1. **報告受領**: 24時間以内に確認
-2. **初期評価**: 72時間以内に深刻度を評価
-3. **修正開発**: 深刻度に応じて1-30日以内
-4. **修正リリース**: 修正完了後速やかに
-5. **公開**: 修正リリース後、適切な時期に詳細公開
+```markdown
+## 脆弱性の概要
+- **脆弱性の種類**: (例: XSS、CSRF、権限昇格等)
+- **影響度**: Critical / High / Medium / Low
+- **影響範囲**: 影響を受けるコンポーネントやファイル
 
-## ⚡ 緊急時の対応
+## 技術的詳細
+- **再現手順**: 詳細なステップバイステップ
+- **影響**: どのような問題が発生するか
+- **攻撃シナリオ**: 悪用される可能性のあるケース
 
-### 致命的な脆弱性の場合
-- 即座にリポジトリのセキュリティチームに通知
-- 必要に応じて緊急パッチをリリース
-- ユーザーへの注意喚起を実施
+## 環境情報
+- Chrome拡張機能のバージョン
+- Chromeブラウザのバージョン
+- オペレーティングシステム
 
-### 対応優先度
+## 証拠
+- スクリーンショット
+- ログファイル
+- 概念実証コード（PoC）
+```
 
-| 深刻度 | 対応時間 | 説明 |
-|--------|----------|------|
-| 🔴 致命的 | 24時間以内 | ユーザーデータの漏洩リスク |
-| 🟠 高 | 7日以内 | セキュリティ機能の迂回 |
-| 🟡 中 | 30日以内 | 限定的なセキュリティ影響 |
-| 🟢 低 | 次回リリース | 軽微なセキュリティ強化 |
+### 3. **期待される対応時間**
 
-## 🔐 セキュリティのベストプラクティス
+- **24時間以内**: 報告の受領確認
+- **48時間以内**: 初期評価と重要度の分類
+- **7日以内**: 詳細な調査結果と対応計画
+- **30日以内**: 修正版のリリース（重要度による）
 
-### ユーザー向け
+## 🔐 セキュリティ対策
 
-1. **公式ソースからのインストール**
-   - GitHub の公式リリースのみを使用
-   - 第三者による非公式ビルドは避ける
+### Chrome拡張機能固有のセキュリティ
 
-2. **権限の確認**
-   - インストール時に要求される権限を確認
-   - 不審な権限要求がある場合は報告
+#### **Manifest V3 使用**
+```json
+{
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
+```
 
-3. **定期的な更新**
-   - 最新版への更新を推奨
-   - セキュリティアップデートは速やかに適用
+#### **最小権限の原則**
+```json
+{
+  "permissions": [
+    "identity"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ]
+}
+```
 
-### 開発者向け
+#### **セキュアなOAuth実装**
+- OAuth 2.0 PKCE（Proof Key for Code Exchange）の使用
+- アクセストークンの適切な管理
+- リフレッシュトークンの安全な保存
 
-1. **コードレビュー**
-   - すべてのプルリクエストでセキュリティレビュー実施
-   - 外部依存関係のセキュリティチェック
+### API セキュリティ
 
-2. **最小権限の原則**
-   - 必要最小限の権限のみ要求
-   - 不要な権限は削除
+#### **Google Drive API**
+- **最小必要スコープ**: `drive.readonly` と `drive.metadata.readonly` のみ
+- **トークン検証**: すべてのAPIリクエストでトークンの有効性を確認
+- **レート制限**: API呼び出し回数の制限
 
-3. **セキュアコーディング**
-   - XSS、CSRF攻撃の防止
-   - 入力値の適切な検証・サニタイズ
+#### **HTTPS 強制**
+すべての外部通信でHTTPSを使用：
+```javascript
+const API_BASE_URL = 'https://www.googleapis.com/drive/v3';
 
-## 📜 セキュリティポリシーの更新
+// ❌ 使用禁止
+// const API_BASE_URL = 'http://www.googleapis.com/drive/v3';
+```
 
-このセキュリティポリシーは定期的に見直され、必要に応じて更新されます。
+## 🔑 認証とアクセス制御
 
-### 更新履歴
-- 2025-01-XX: 初版作成
+### OAuth 2.0 実装
 
-## 🤝 謝辞
+```javascript
+// セキュアなOAuth実装例
+class SecureAuthManager {
+  constructor() {
+    this.clientId = 'YOUR_CLIENT_ID';
+    this.scopes = [
+      'https://www.googleapis.com/auth/drive.readonly',
+      'https://www.googleapis.com/auth/drive.metadata.readonly'
+    ];
+  }
 
-セキュリティ向上にご協力いただいているすべての方々に感謝いたします：
+  async getAuthToken() {
+    try {
+      const token = await chrome.identity.getAuthToken({
+        interactive: true,
+        scopes: this.scopes
+      });
+      
+      // トークンの検証
+      if (!this.validateToken(token)) {
+        throw new Error('Invalid token received');
+      }
+      
+      return token;
+    } catch (error) {
+      console.error('Authentication failed:', error);
+      throw error;
+    }
+  }
 
-- セキュリティ研究者
-- 脆弱性報告者
-- コードレビュアー
-- コミュニティメンバー
+  validateToken(token) {
+    // トークンの形式とexpiration時間をチェック
+    return token && typeof token === 'string' && token.length > 0;
+  }
 
-## 📞 連絡先
+  async revokeToken() {
+    // セッション終了時にトークンを無効化
+    await chrome.identity.removeCachedAuthToken({ token: this.currentToken });
+  }
+}
+```
+
+### アクセス制御
+
+- **最小権限**: 必要最小限の権限のみ要求
+- **権限の検証**: 各操作前に権限を確認
+- **セッション管理**: 適切なセッションタイムアウト
+
+## 📊 データ保護
+
+### データの取り扱い
+
+#### **機密情報の非保存**
+```javascript
+// ✅ 推奨: メモリ内での一時的な処理
+function processFileData(fileData) {
+  // ファイルデータの処理
+  const processedData = transform(fileData);
+  
+  // 処理後は即座にクリア
+  fileData = null;
+  
+  return processedData;
+}
+
+// ❌ 禁止: 機密データの永続化
+// localStorage.setItem('userData', JSON.stringify(sensitiveData));
+```
+
+#### **ログ出力の制限**
+```javascript
+// ✅ プロダクション環境での安全なログ出力
+function secureLog(message, data = null) {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message, data);
+  } else {
+    // プロダクションでは機密情報を除外
+    console.log(message);
+  }
+}
+
+// ❌ 機密情報のログ出力は禁止
+// console.log('User token:', authToken);
+```
+
+### データ送信の暗号化
+
+すべての外部通信は暗号化：
+```javascript
+// HTTPS接続の強制
+function makeSecureRequest(url, options = {}) {
+  if (!url.startsWith('https://')) {
+    throw new Error('HTTPS required for all external requests');
+  }
+  
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...options.headers,
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  });
+}
+```
+
+## 🛠️ セキュリティベストプラクティス
+
+### 開発時のセキュリティ
+
+#### **入力検証**
+```javascript
+function sanitizeFileName(fileName) {
+  if (typeof fileName !== 'string') {
+    throw new Error('File name must be a string');
+  }
+  
+  // 危険な文字の除去
+  return fileName
+    .replace(/[<>:"/\\|?*]/g, '')
+    .replace(/\.\.+/g, '.')
+    .trim();
+}
+
+function validateFileId(fileId) {
+  const fileIdPattern = /^[a-zA-Z0-9_-]+$/;
+  if (!fileIdPattern.test(fileId)) {
+    throw new Error('Invalid file ID format');
+  }
+  return fileId;
+}
+```
+
+#### **エラーハンドリング**
+```javascript
+function handleApiError(error) {
+  // 詳細なエラー情報をログに記録（開発環境のみ）
+  if (process.env.NODE_ENV === 'development') {
+    console.error('API Error Details:', error);
+  }
+  
+  // ユーザーには一般的なエラーメッセージのみ表示
+  return {
+    success: false,
+    message: 'An error occurred. Please try again later.'
+  };
+}
+```
+
+### コードレビューのセキュリティチェックリスト
+
+- [ ] OAuth実装が適切か
+- [ ] 最小権限の原則が守られているか
+- [ ] 機密情報がログ出力されていないか
+- [ ] 入力検証が適切に行われているか
+- [ ] エラーハンドリングが適切か
+- [ ] HTTPS通信が強制されているか
+- [ ] トークンの管理が適切か
+
+## 🔍 定期的な監査
+
+### セキュリティ監査スケジュール
+
+- **月次**: 依存関係の脆弱性チェック
+- **四半期**: コードセキュリティレビュー
+- **年次**: 包括的なセキュリティ監査
+
+### 自動化されたセキュリティチェック
+
+```bash
+# 依存関係の脆弱性チェック（準備中）
+npm audit
+
+# コードの静的解析（準備中）
+npm run security-scan
+```
+
+## 📝 セキュリティ更新の通知
+
+セキュリティアップデートは以下の方法で通知されます：
+
+1. **GitHub Security Advisory**
+2. **リリースノート**でのセキュリティ修正の明記
+3. **CHANGELOG.md**での詳細な変更内容
+4. **Chrome Web Store**での拡張機能更新
+
+## 🏆 謝辞
+
+セキュリティの向上にご協力いただいた方々：
+
+- [責任ある開示](https://en.wikipedia.org/wiki/Responsible_disclosure)に従って報告いただいた研究者の皆様
+- セキュリティレビューにご協力いただいたコミュニティの皆様
+
+## 📞 お問い合わせ
 
 セキュリティに関する質問や懸念がある場合：
 
-- GitHub Issues（公開的な質問）
-- GitHub Security Advisories（機密性の高い報告）
-- Email（GitHubプロフィール記載のメールアドレス）
+- **Security Advisory**: [GitHub Security](https://github.com/overdozer1124/drive-contents-viewer/security)
+- **General Security Questions**: [GitHub Discussions](https://github.com/overdozer1124/drive-contents-viewer/discussions)
 
 ---
 
-**注意**: このプロジェクトは個人開発であり、商用レベルのセキュリティ保証は提供できません。ミッションクリティカルな環境での使用は十分にテストしてから行ってください。
+**セキュリティは継続的なプロセスです。皆様のご協力とフィードバックに感謝いたします。**

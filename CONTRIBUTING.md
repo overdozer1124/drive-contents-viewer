@@ -1,300 +1,335 @@
-# コントリビューションガイド
+# 🤝 コントリビューションガイド
 
-Drive Contents Viewerプロジェクトへの貢献に興味を持っていただき、ありがとうございます！
+Drive Contents Viewerプロジェクトへの貢献を検討していただき、ありがとうございます！このガイドでは、効果的に貢献するための方法をご説明します。
 
-## 🚀 始める前に
+## 📋 目次
 
-### 必要な知識・ツール
+- [行動規範](#-行動規範)
+- [貢献の種類](#-貢献の種類)
+- [開発環境のセットアップ](#-開発環境のセットアップ)
+- [プルリクエストのプロセス](#-プルリクエストのプロセス)
+- [コーディング規約](#-コーディング規約)
+- [Issue報告のガイドライン](#-issue報告のガイドライン)
+- [コミットメッセージの規約](#-コミットメッセージの規約)
+- [リリースプロセス](#-リリースプロセス)
 
-- JavaScript (ES6+)
-- Chrome Extensions API
-- Google Drive API
-- Git/GitHub
+## 🤝 行動規範
 
-### 開発環境
+すべての参加者に対して敬意を持って接することを期待しています。以下の行動を心がけてください：
 
-- Node.js (推奨: 18+)
-- Chrome ブラウザ
-- エディタ (VS Code推奨)
+- **建設的で敬意ある**コミュニケーション
+- **異なる視点や経験**を尊重
+- **建設的な批判**を受け入れる
+- **コミュニティの最善**を考慮した行動
 
-## 🛠 開発環境のセットアップ
+## 🎯 貢献の種類
 
-1. **リポジトリをフォーク**
+### 🐛 バグ報告
+- [Bug Report Template](https://github.com/overdozer1124/drive-contents-viewer/issues/new?template=bug_report.md)を使用
+- 再現可能な詳細な情報を提供
+- スクリーンショットやコンソールログを添付
+
+### ✨ 機能要望
+- [Feature Request Template](https://github.com/overdozer1124/drive-contents-viewer/issues/new?template=feature_request.md)を使用
+- 具体的な使用ケースを説明
+- 既存の機能との関連性を検討
+
+### 📝 ドキュメント改善
+- 誤字脱字の修正
+- 説明の追加・改善
+- 翻訳の追加
+- 使用例の追加
+
+### 💻 コード貢献
+- バグ修正
+- 新機能の実装
+- パフォーマンス改善
+- テストの追加
+
+## 🛠️ 開発環境のセットアップ
+
+### 前提条件
+
+- **Node.js** (v16以上)
+- **Git**
+- **Google Chrome** (最新版)
+- **Google Cloud Platform**アカウント
+
+### セットアップ手順
+
+1. **リポジトリのフォーク**
    ```bash
-   # GitHubでフォークを作成後
-   git clone https://github.com/[your-username]/drive-contents-viewer.git
+   # GitHubでフォークボタンをクリック
+   git clone https://github.com/YOUR_USERNAME/drive-contents-viewer.git
    cd drive-contents-viewer
    ```
 
-2. **開発ブランチを作成**
+2. **アップストリームの設定**
+   ```bash
+   git remote add upstream https://github.com/overdozer1124/drive-contents-viewer.git
+   ```
+
+3. **開発ブランチの作成**
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-3. **Chrome拡張機能として読み込み**
-   - `chrome://extensions/` を開く
-   - デベロッパーモードを有効
-   - 「パッケージ化されていない拡張機能を読み込む」
+4. **Chrome拡張機能の読み込み**
+   - Chrome拡張機能管理画面（`chrome://extensions/`）を開く
+   - 「デベロッパーモード」を有効化
+   - 「パッケージ化されていない拡張機能を読み込む」でプロジェクトフォルダを選択
 
-## 📝 コントリビューションの種類
+5. **OAuth設定**
+   - [README.md](README.md#-gcp-oauth設定必須)の手順に従ってGCP設定を完了
 
-### 🐛 バグ報告
+## 🔄 プルリクエストのプロセス
 
-バグを発見した場合：
+### 1. Issue の確認
+- 新機能や大きな変更の場合、まずIssueで議論
+- 既存のIssueがある場合は参照
 
-1. **既存のIssueを確認**
-   - 同じ問題が報告されていないかチェック
+### 2. ブランチの作成
+```bash
+# 最新のmainブランチから開始
+git checkout main
+git pull upstream main
+git checkout -b feature/your-feature-name
+```
 
-2. **新しいIssueを作成**
-   - 明確なタイトル
-   - 再現手順
-   - 期待される動作 vs 実際の動作
-   - 環境情報（Chrome版本、OS）
-   - スクリーンショット（可能であれば）
+### 3. 開発とテスト
+- 小さく、論理的なコミットを作成
+- 変更内容をテスト
+- ドキュメントの更新
 
-### ✨ 機能提案
+### 4. プルリクエストの作成
+- [Pull Request Template](https://github.com/overdozer1124/drive-contents-viewer/compare)を使用
+- 変更内容の明確な説明
+- 関連するIssueへの参照
+- スクリーンショットやGIFの添付（UI変更の場合）
 
-新機能のアイデアがある場合：
+### 5. レビューと改善
+- レビューアからのフィードバックに対応
+- 必要に応じて追加のコミット
+- CI/CDチェックの通過
 
-1. **Discussionsで議論**
-   - まずは[GitHub Discussions](https://github.com/overdozer1124/drive-contents-viewer/discussions)で提案
-
-2. **Issue作成**
-   - 機能の詳細説明
-   - 使用ケース
-   - 実装方法のアイデア（あれば）
-
-### 🔧 コードの貢献
-
-#### プルリクエストの流れ
-
-1. **Issue確認**
-   - 既存のIssueにアサインされているか確認
-   - 新しい機能の場合は事前にIssueを作成
-
-2. **コード作成**
-   - 一貫したコーディングスタイルを保持
-   - 適切なコメントを追加
-   - テスト可能な小さな変更に分割
-
-3. **テスト**
-   - 変更が既存機能に影響しないことを確認
-   - 新機能が正常に動作することを確認
-
-4. **プルリクエスト作成**
-   - 明確なタイトルと説明
-   - 関連するIssue番号を記載
-   - 変更内容のスクリーンショット（UI変更の場合）
-
-## 📋 コーディング規約
+## 📝 コーディング規約
 
 ### JavaScript
 
 ```javascript
-// 変数名: camelCase
-const fileName = 'example.js';
+// ✅ 良い例
+const fileList = document.getElementById('file-list');
+const API_ENDPOINT = 'https://www.googleapis.com/drive/v3';
 
-// 関数名: camelCase
-function updateLayout(columns) {
-  // 実装
+function displayFiles(files) {
+  if (!files || files.length === 0) {
+    showEmptyState();
+    return;
+  }
+  
+  files.forEach(file => {
+    const fileElement = createFileElement(file);
+    fileList.appendChild(fileElement);
+  });
 }
 
-// 定数: UPPER_SNAKE_CASE
-const MAX_COLUMNS = 5;
-
-// 非同期関数: async/await推奨
-async function fetchDriveContents(token, driveInfo) {
-  try {
-    const response = await fetch(url, options);
-    return await response.json();
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
+// ❌ 悪い例
+var fl = document.getElementById('file-list');
+function df(f) {
+  for(var i=0;i<f.length;i++){
+    fl.appendChild(cf(f[i]));
   }
 }
 ```
 
-### CSS
+### 命名規則
 
-```css
-/* クラス名: kebab-case */
-.file-item {
-  /* プロパティはアルファベット順 */
-  background-color: white;
-  border-radius: 8px;
-  cursor: move;
-  overflow: hidden;
-}
+- **変数・関数**: camelCase
+- **定数**: UPPER_SNAKE_CASE
+- **CSS クラス**: kebab-case
+- **ファイル名**: snake_case または kebab-case
 
-/* 適切なインデント（2スペース） */
-.file-item:hover {
-  transform: scale(1.02);
-}
-```
-
-### HTML
+### HTML/CSS
 
 ```html
-<!-- 適切なインデント -->
-<div class="file-item">
-  <div class="file-name">
-    <span class="file-title">ファイル名</span>
+<!-- ✅ 良い例 -->
+<div class="file-grid file-grid--compact">
+  <div class="file-item" data-file-id="123">
+    <img class="file-item__thumbnail" src="..." alt="File thumbnail">
+    <span class="file-item__name">Document.pdf</span>
   </div>
 </div>
-
-<!-- 属性は適切に設定 -->
-<input type="range" id="column-slider" min="1" max="5" value="3">
 ```
 
-## 🧪 テスト
+```css
+/* ✅ 良い例 */
+.file-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(var(--columns), 1fr);
+}
 
-### 手動テスト
+.file-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
 
-1. **基本機能**
-   - OAuth認証
-   - ファイル一覧表示
-   - プレビュー機能
-   - レイアウト変更
-
-2. **エラーハンドリング**
-   - ネットワークエラー
-   - 認証失敗
-   - 権限不足
-
-3. **ブラウザサポート**
-   - Chrome最新版
-   - Chrome安定版
-
-### テスト環境
-
-```javascript
-// テストモードの使用
-// manifest_test.json を使用してOAuth無しでテスト
+.file-item:hover {
+  border-color: #4285f4;
+  box-shadow: 0 2px 8px rgba(66, 133, 244, 0.2);
+}
 ```
-
-## 📖 ドキュメント
 
 ### コメント
 
 ```javascript
 /**
- * Google Driveからファイル一覧を取得する
- * @param {string} token - OAuth2アクセストークン
- * @param {Object} driveInfo - ドライブ情報
- * @param {string} driveInfo.folderId - フォルダID
- * @param {boolean} driveInfo.isMyDrive - マイドライブかどうか
- * @returns {Promise<Object>} ファイル一覧
+ * Google Drive APIからファイル一覧を取得
+ * @param {string} folderId - 取得対象のフォルダID
+ * @param {number} maxResults - 最大取得件数
+ * @returns {Promise<Array>} ファイル一覧
  */
-async function fetchDriveContents(token, { folderId, isMyDrive }) {
-  // 実装
+async function fetchFiles(folderId = 'root', maxResults = 100) {
+  // OAuth認証の確認
+  const token = await getAuthToken();
+  
+  // APIリクエストの構築
+  const url = `${API_ENDPOINT}/files?${buildQueryParams({
+    q: `'${folderId}' in parents and trashed = false`,
+    maxResults,
+    fields: 'items(id,name,mimeType,thumbnailLink)'
+  })}`;
+  
+  try {
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.items || [];
+  } catch (error) {
+    console.error('Failed to fetch files:', error);
+    throw error;
+  }
 }
 ```
 
-### README更新
+## 📋 Issue報告のガイドライン
 
-- 新機能追加時はREADMEも更新
-- スクリーンショットも更新（必要に応じて）
+### バグ報告
 
-## 🔍 レビュープロセス
+**必須情報**:
+- Chrome拡張機能のバージョン
+- Chromeブラウザのバージョン
+- オペレーティングシステム
+- 再現手順
+- 期待される動作
+- 実際の動作
+- スクリーンショットやコンソールログ
 
-### プルリクエストレビュー
+### 機能要望
 
-1. **自動チェック**
-   - コードスタイル
-   - 基本的な動作確認
+**含めるべき内容**:
+- 具体的な使用ケース
+- 現在の回避策（あれば）
+- 期待される利益
+- 実装の提案（あれば）
 
-2. **人的レビュー**
-   - コード品質
-   - 設計の妥当性
-   - ユーザビリティ
-   - セキュリティ
+## 📬 コミットメッセージの規約
 
-3. **テスト**
-   - 機能テスト
-   - 回帰テスト
-   - パフォーマンステスト
+[Conventional Commits](https://www.conventionalcommits.org/)に基づいた形式を使用：
 
-### レビュー対応
+```
+<type>[optional scope]: <description>
 
-- フィードバックには建設的に対応
-- 必要に応じて修正コミットを追加
-- レビュアーとの議論を歓迎
+[optional body]
+
+[optional footer(s)]
+```
+
+### Type の種類
+
+- `feat`: 新機能
+- `fix`: バグ修正
+- `docs`: ドキュメントのみの変更
+- `style`: コードの意味に影響しない変更（空白、フォーマット等）
+- `refactor`: バグ修正でも機能追加でもないコードの変更
+- `perf`: パフォーマンス改善
+- `test`: テストの追加や修正
+- `chore`: ビルドプロセスや補助ツールの変更
+
+### 例
+
+```bash
+# 新機能
+feat(auth): add OAuth2 refresh token handling
+
+# バグ修正
+fix(ui): resolve file grid layout issue on mobile devices
+
+# ドキュメント
+docs(readme): add detailed OAuth setup instructions
+
+# リファクタリング
+refactor(api): simplify error handling in Drive API calls
+```
 
 ## 🚀 リリースプロセス
 
 ### バージョニング
 
-セマンティックバージョニング（SemVer）を使用：
+[Semantic Versioning](https://semver.org/)を使用：
 
-- **MAJOR**: 互換性のない変更
-- **MINOR**: 後方互換性のある機能追加
-- **PATCH**: 後方互換性のあるバグ修正
-
-例: `1.2.3`
+- `MAJOR`: 互換性のない変更
+- `MINOR`: 後方互換性のある機能追加
+- `PATCH`: 後方互換性のあるバグ修正
 
 ### リリース手順
 
-1. **変更履歴更新**
-2. **バージョン番号更新**
-3. **タグ作成**
-4. **リリースノート作成**
+1. **CHANGELOG.mdの更新**
+2. **バージョン番号の更新**（manifest.json）
+3. **リリースタグの作成**
+4. **GitHub Releaseの作成**
+5. **Chrome Web Storeへの提出**（メンテナ）
 
-## ❓ 質問・サポート
+## 🏷️ ラベル管理
 
-### 連絡方法
+### Issue/PR ラベル
 
-1. **GitHub Discussions** (推奨)
-   - 一般的な質問
-   - 機能提案の議論
-   - 開発方針の相談
+- `bug`: バグ報告
+- `enhancement`: 新機能・改善
+- `documentation`: ドキュメント関連
+- `good first issue`: 初心者向け
+- `help wanted`: ヘルプ募集
+- `priority/high`: 高優先度
+- `priority/medium`: 中優先度
+- `priority/low`: 低優先度
+- `status/in-progress`: 作業中
+- `status/needs-review`: レビュー待ち
 
-2. **GitHub Issues**
-   - バグ報告
-   - 具体的な問題
+## ❓ よくある質問
 
-3. **プルリクエスト**
-   - コードレビュー
-   - 実装に関する質問
+### Q: 小さな変更でもIssueを作る必要がありますか？
+A: タイポ修正などの明らかな改善は、直接PRを送っても構いません。ただし、機能的な変更は事前にIssueで議論することをお勧めします。
 
-### 質問のガイドライン
+### Q: 複数の変更を1つのPRに含めても良いですか？
+A: 関連する変更であれば問題ありませんが、論理的に分離できる場合は複数のPRに分けることをお勧めします。
 
-- 明確で具体的な質問
-- 関連する情報を含める
-- 既存の情報を確認してから質問
+### Q: テストはどこで実行すればよいですか？
+A: 現在は手動テストを中心としていますが、自動テストの導入を検討中です。Chrome拡張機能として実際に動作確認してください。
 
-## 🎉 認識・謝辞
+## 📞 サポート
 
-貢献者の皆様：
+質問や不明な点がある場合：
 
-- コードコントリビューター
-- バグ報告者
-- 機能提案者
-- ドキュメント改善者
-- テスター
-
-すべての貢献に感謝いたします！
-
-## 📜 行動規範
-
-### 私たちの約束
-
-- 尊重と包容力のあるコミュニティ
-- 建設的なフィードバック
-- 学習と成長を支援
-
-### 期待される行動
-
-- 礼儀正しく専門的な対応
-- 異なる意見や経験の尊重
-- 建設的な批判とフィードバック
-- コミュニティへの貢献
-
-### 許可されない行動
-
-- 嫌がらせや差別的発言
-- 個人攻撃や政治的議論
-- スパムや無関係な投稿
+- [GitHub Discussions](https://github.com/overdozer1124/drive-contents-viewer/discussions)
+- [GitHub Issues](https://github.com/overdozer1124/drive-contents-viewer/issues)
 
 ---
 
-再度、Drive Contents Viewerへの貢献をご検討いただき、ありがとうございます！
+**貢献していただき、ありがとうございます！🎉**

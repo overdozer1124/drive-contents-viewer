@@ -1,364 +1,287 @@
-# Drive Contents Viewer
+# 🚀 Drive Contents Viewer
 
-Google Driveのファイルを快適にプレビュー・管理できるChrome拡張機能です。
+**Google Driveのファイルを快適にプレビュー・管理できるChrome拡張機能**
 
-![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-blue)
-![Manifest V3](https://img.shields.io/badge/Manifest-V3-green)
-![License](https://img.shields.io/badge/license-MIT-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-blue.svg)](https://chrome.google.com/webstore)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
 
-## ⚡ クイックスタート
+## 📋 目次
 
-初めての方向けの簡単セットアップガイド（5分で完了）
+- [概要](#-概要)
+- [主な機能](#-主な機能)
+- [インストール方法](#-インストール方法)
+- [GCP OAuth設定（必須）](#-gcp-oauth設定必須)
+- [使用方法](#-使用方法)
+- [開発者向け情報](#-開発者向け情報)
+- [貢献方法](#-貢献方法)
+- [ライセンス](#-ライセンス)
 
-### 1️⃣ ダウンロード
-```bash
-git clone https://github.com/overdozer1124/drive-contents-viewer.git
-```
+## 🌟 概要
 
-### 2️⃣ Chrome拡張機能をロード
-1. Chrome で `chrome://extensions/` を開く
-2. 「デベロッパーモード」を ON
-3. 「パッケージ化されていない拡張機能を読み込む」
-4. ダウンロードしたフォルダを選択
+Drive Contents Viewerは、Google Driveのファイルをより効率的に閲覧・管理するためのChrome拡張機能です。直感的なインターフェースで、複数のファイルを同時にプレビューし、ドラッグ&ドロップで整理できます。
 
-### 3️⃣ 拡張機能IDをコピー
-- ロードされた拡張機能の「ID」をメモ帳にコピー
+### 🎯 こんな方におすすめ
 
-### 4️⃣ Google Cloud Console設定
-1. [Google Cloud Console](https://console.cloud.google.com/) にアクセス
-2. 新しいプロジェクト作成
-3. Google Drive API を有効化
-4. OAuth2クライアントID作成
-   - 承認済みJavaScript生成元: `chrome-extension://[拡張機能ID]`
+- Google Driveのファイルを頻繁に閲覧する方
+- 複数のドキュメントを同時に確認したい方
+- ファイルの整理・管理を効率化したい方
+- デザイナーやコンテンツクリエイター
 
-### 5️⃣ 設定ファイル更新
-`manifest.json` の client_id を更新:
-```json
-"client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com"
-```
+## ✨ 主な機能
 
-### 6️⃣ 完了！
-1. Chrome拡張機能を再読み込み
-2. Google Drive を開いて拡張機能アイコンをクリック
-3. 初回認証後、ファイルプレビューを楽しもう！
+### 🔍 ファイルプレビュー
+- **Google Workspace ファイル**: Docs、Sheets、Slides
+- **画像ファイル**: JPEG、PNG、GIF、WebP
+- **ドキュメント**: PDF
+- **動画ファイル**: MP4、WebM
+- **その他**: 直接リンクでの表示
 
-> 💡 **トラブル時**: [詳細なセットアップガイド](#-インストール方法) をご確認ください
+### 🎨 カスタマイズ可能なレイアウト
+- **グリッド表示**: 1-5列まで調整可能
+- **表示方向**: 横長/縦長の切り替え
+- **レスポンシブデザイン**: 画面サイズに自動対応
 
-## 🚀 主な機能
+### 🖱️ 直感的な操作
+- **ドラッグ&ドロップ**: ファイルの順序変更
+- **ワンクリックアクセス**: ファイルの直接表示
+- **URLコピー**: クリップボードへの簡単コピー
 
-- **📁 Google Drive連携**: OAuth2認証でGoogle Driveに安全にアクセス
-- **👀 ファイルプレビュー**: Docs、Sheets、Slides、画像、PDFなどを直接プレビュー
-- **🎨 柔軟なレイアウト**: 1-5列のグリッド表示、縦横表示の切り替え
-- **🔗 便利な操作**: ワンクリックでファイル表示・URLコピー
-- **📱 レスポンシブ**: デスクトップ・タブレット・モバイル対応
-- **🔄 ドラッグ&ドロップ**: ファイルの順序をドラッグで変更可能
+### 🌐 多言語対応
+- 国際化（i18n）対応
+- 英語・日本語サポート
 
-## 📸 スクリーンショット
+## 🚀 インストール方法
 
-※ここにスクリーンショットを追加してください
+### 方法1: Chrome Web Store（推奨）
 
-## 🛠 インストール方法
+> 🚧 **準備中**: Chrome Web Storeでの公開準備中です。
 
-### 1. リポジトリをダウンロード
+### 方法2: 開発者モード（現在利用可能）
 
-```bash
-git clone https://github.com/overdozer1124/drive-contents-viewer.git
-cd drive-contents-viewer
-```
+1. **リポジトリのクローン**
+   ```bash
+   git clone https://github.com/overdozer1124/drive-contents-viewer.git
+   cd drive-contents-viewer
+   ```
 
-または、[Releases](https://github.com/overdozer1124/drive-contents-viewer/releases)から最新版をダウンロード
+2. **Chrome拡張機能管理画面を開く**
+   - Chromeで `chrome://extensions/` にアクセス
+   - 右上の「デベロッパーモード」を有効化
 
-### 2. Google Cloud Platform でのOAuth設定
+3. **拡張機能を読み込む**
+   - 「パッケージ化されていない拡張機能を読み込む」をクリック
+   - クローンしたフォルダを選択
 
-**⚠️ 重要**: この拡張機能を使用するには、Google Cloud PlatformでのOAuth2設定が必要です。
+4. **OAuth設定を完了** （下記の詳細手順参照）
 
-#### 📋 事前準備
+## 🔐 GCP OAuth設定（必須）
 
-- Googleアカウント（無料）
-- Chrome ブラウザ
-- インターネット接続
+Google Drive APIを使用するため、Google Cloud Platform（GCP）でのOAuth設定が必要です。
 
-#### 🔧 詳細設定手順
+### 📋 事前準備
 
-<details>
-<summary><strong>📝 ステップ1: Google Cloud Consoleプロジェクトの作成</strong></summary>
+- Googleアカウント
+- Google Cloud Platformアカウント（無料）
 
-1. **Google Cloud Console**にアクセス
-   - [https://console.cloud.google.com/](https://console.cloud.google.com/)
+### 🔧 ステップ1: Google Cloud Projectの作成
+
+1. **Google Cloud Consoleにアクセス**
+   ```
+   https://console.cloud.google.com/
+   ```
 
 2. **新しいプロジェクトを作成**
-   - 画面上部の「プロジェクトを選択」をクリック
-   - 「新しいプロジェクト」をクリック
-   - プロジェクト名: `drive-contents-viewer`（任意の名前）
+   - 「プロジェクトを選択」→「新しいプロジェクト」
+   - プロジェクト名: `drive-contents-viewer`（任意）
    - 「作成」をクリック
 
-3. **プロジェクトを選択**
-   - 作成したプロジェクトが選択されていることを確認
-
-</details>
-
-<details>
-<summary><strong>🔌 ステップ2: Google Drive APIの有効化</strong></summary>
+### 🔧 ステップ2: Google Drive APIの有効化
 
 1. **APIライブラリにアクセス**
-   - 左側メニューから「APIとサービス」→「ライブラリ」をクリック
+   - 左メニュー「APIとサービス」→「ライブラリ」
 
-2. **Google Drive APIを検索**
+2. **Google Drive APIを検索・有効化**
    - 検索ボックスに「Google Drive API」と入力
-   - 「Google Drive API」をクリック
+   - 「Google Drive API」を選択
+   - 「有効にする」をクリック
 
-3. **APIを有効化**
-   - 「有効にする」ボタンをクリック
-   - 有効化完了まで数分待機
-
-</details>
-
-<details>
-<summary><strong>🔐 ステップ3: OAuth同意画面の設定</strong></summary>
+### 🔧 ステップ3: OAuth同意画面の設定
 
 1. **OAuth同意画面にアクセス**
-   - 左側メニューから「APIとサービス」→「OAuth同意画面」をクリック
+   - 左メニュー「APIとサービス」→「OAuth同意画面」
 
-2. **ユーザータイプを選択**
-   - 「外部」を選択
-   - 「作成」をクリック
+2. **基本情報を入力**
+   - ユーザータイプ: 「外部」を選択
+   - アプリ名: `Drive Contents Viewer`
+   - ユーザーサポートメール: あなたのメールアドレス
+   - デベロッパーの連絡先情報: あなたのメールアドレス
 
-3. **アプリ情報を入力**
-   - **アプリ名**: `Drive Contents Viewer`
-   - **ユーザーサポートメール**: あなたのGmailアドレス
-   - **デベロッパーの連絡先情報**: 同じGmailアドレス
-   - 「保存して次へ」をクリック
-
-4. **スコープを設定**
+3. **スコープの設定**
    - 「スコープを追加または削除」をクリック
    - 以下のスコープを追加:
-     - `../auth/drive.readonly`
-     - `../auth/drive.metadata.readonly`
-   - 「更新」をクリック
-   - 「保存して次へ」をクリック
+     ```
+     ../auth/drive.readonly
+     ../auth/drive.metadata.readonly
+     ```
 
-5. **テストユーザーを追加**
-   - 「テストユーザーを追加」をクリック
-   - あなたのGmailアドレスを追加
-   - 「保存して次へ」をクリック
+4. **テストユーザーの追加**
+   - 「テストユーザー」タブで自分のメールアドレスを追加
 
-6. **概要を確認**
-   - 設定内容を確認
-   - 「ダッシュボードに戻る」をクリック
+### 🔧 ステップ4: OAuth認証情報の作成
 
-</details>
+1. **認証情報ページにアクセス**
+   - 左メニュー「APIとサービス」→「認証情報」
 
-<details>
-<summary><strong>🔑 ステップ4: OAuth2クライアントIDの作成</strong></summary>
-
-1. **認証情報にアクセス**
-   - 左側メニューから「APIとサービス」→「認証情報」をクリック
-
-2. **認証情報を作成**
-   - 「認証情報を作成」→「OAuth クライアント ID」をクリック
-
-3. **アプリケーションタイプを選択**
-   - 「ウェブアプリケーション」を選択
-
-4. **名前を入力**
+2. **OAuth クライアントIDを作成**
+   - 「認証情報を作成」→「OAuth クライアント ID」
+   - アプリケーションの種類: 「ウェブアプリケーション」
    - 名前: `Drive Contents Viewer Extension`
 
-5. **承認済みのJavaScript生成元を設定**
-   - 「URIを追加」をクリック
-   - `chrome-extension://[EXTENSION-ID]` を追加
-   - ※ EXTENSION-IDは次のステップで取得
-
-6. **作成完了**
-   - 「作成」をクリック
-   - **クライアントID**をコピーして保存
-
-</details>
-
-### 3. Chrome拡張機能の設定
-
-#### 📝 ステップ1: 拡張機能IDの取得
-
-1. **Chrome拡張機能をロード**
-   - Chromeで `chrome://extensions/` を開く
-   - 「デベロッパーモード」を有効にする
-   - 「パッケージ化されていない拡張機能を読み込む」をクリック
-   - ダウンロードした `drive-contents-viewer` フォルダを選択
-
-2. **拡張機能IDをコピー**
-   - ロードされた拡張機能の「ID」をコピー
+3. **拡張機能IDを取得**
+   - Chromeの拡張機能管理画面で、読み込んだ拡張機能のIDをコピー
    - 例: `abcdefghijklmnopqrstuvwxyz123456`
 
-#### 🔧 ステップ2: OAuth設定の更新
+4. **承認済みJavaScript生成元を設定**
+   ```
+   chrome-extension://[YOUR_EXTENSION_ID]
+   ```
+   - `[YOUR_EXTENSION_ID]`を実際のIDに置き換え
 
-1. **Google Cloud Consoleに戻る**
-   - 先ほど作成したOAuth2クライアントIDを編集
-   - 承認済みのJavaScript生成元に以下を追加:
-     ```
-     chrome-extension://[拡張機能ID]
-     ```
+5. **クライアントIDをコピー**
+   - 作成されたクライアントIDをコピー
 
-2. **manifest.jsonを更新**
-   - `manifest.json` ファイルを開く
-   - `oauth2` セクションの `client_id` を更新:
+### 🔧 ステップ5: 拡張機能の設定
+
+1. **manifest.jsonの編集**
    ```json
-   "oauth2": {
-     "client_id": "あなたのクライアントID.apps.googleusercontent.com",
-     "scopes": [
-       "https://www.googleapis.com/auth/drive.readonly",
-       "https://www.googleapis.com/auth/drive.metadata.readonly"
-     ]
+   {
+     "oauth2": {
+       "client_id": "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com",
+       "scopes": [
+         "https://www.googleapis.com/auth/drive.readonly",
+         "https://www.googleapis.com/auth/drive.metadata.readonly"
+       ]
+     }
    }
    ```
 
-3. **拡張機能を再読み込み**
-   - Chrome拡張機能ページで「再読み込み」をクリック
+2. **拡張機能の再読み込み**
+   - Chrome拡張機能管理画面で「更新」ボタンをクリック
 
-## 🎯 使用方法
+3. **動作確認**
+   - 拡張機能アイコンをクリック
+   - 認証画面が表示されれば設定完了
 
-### 基本的な使い方
+## 🎮 使用方法
 
-1. **Google Driveにアクセス**
-   - [Google Drive](https://drive.google.com/) を開く
-   - 表示したいフォルダに移動
+### 基本操作
 
-2. **拡張機能を起動**
+1. **拡張機能の起動**
    - ツールバーの拡張機能アイコンをクリック
-   - 新しいタブでプレビュー画面が開く
 
-3. **ファイルの操作**
-   - **表示**: ファイル名の左の「View file」をクリック
-   - **URLコピー**: ファイル名の右の「Copy link」をクリック
-   - **順序変更**: ファイルをドラッグ&ドロップ
+2. **Google Driveへの接続**
+   - 初回起動時に認証画面が表示
+   - Googleアカウントでサインイン
 
-### レイアウト設定
+3. **ファイルの閲覧**
+   - 自動的にマイドライブのファイルが表示
+   - ファイルをクリックでプレビュー
 
-- **表示列数**: スライダーで1-5列まで調整
+### 便利な機能
+
+#### 📐 レイアウトの調整
+- **列数変更**: 右上のボタンで1-5列に調整
 - **表示方向**: 横長/縦長の切り替え
-- **レスポンシブ**: 画面サイズに応じて自動調整
 
-## 🔧 対応ファイル形式
+#### 🔄 ファイルの整理
+- **ドラッグ&ドロップ**: ファイルを他の位置に移動
+- **URLコピー**: ファイル名の右クリックでURLをコピー
 
-| ファイル形式 | プレビュー方法 |
-|-------------|----------------|
-| Google Docs | 埋め込みプレビュー |
-| Google Sheets | 埋め込みプレビュー |
-| Google Slides | 埋め込みプレビュー |
-| 画像 (JPEG, PNG, GIF) | 直接表示 |
-| PDF | 埋め込みプレビュー |
-| 動画 (MP4, MOV, AVI, MKV, WebM) | プレビュープレーヤー |
-| その他 | 直接リンク |
+#### 🔍 ファイルの検索
+- **フォルダ移動**: フォルダをクリックで中身を表示
+- **戻る**: 上部の「←」ボタンで前のフォルダに戻る
 
-## ⚡ 技術仕様
+## 🛠️ 開発者向け情報
 
-- **Manifest Version**: 3.0
-- **最小Chrome Version**: 88+
-- **Permissions**: 
-  - `activeTab` - アクティブタブへのアクセス
-  - `scripting` - スクリプト実行
-  - `tabs` - タブ情報の取得
-  - `identity` - OAuth認証
-- **APIs**: 
-  - Google Drive API v3
-  - Chrome Extensions API
-  - Chrome Identity API
+### 技術仕様
 
-## 🚨 トラブルシューティング
+- **Manifest Version**: 3
+- **API**: Google Drive API v3
+- **認証**: OAuth 2.0
+- **UI Framework**: Vanilla JavaScript + CSS Grid
+- **国際化**: Chrome Extension i18n API
 
-### よくある問題と解決方法
+### ファイル構成
 
-<details>
-<summary><strong>❌ "OAuth2 request failed: Service responded with error: 'bad client id'"</strong></summary>
-
-**原因**: OAuth2クライアントIDが正しく設定されていない
-
-**解決方法**:
-1. Google Cloud Consoleで正しいクライアントIDをコピー
-2. `manifest.json` の `client_id` を更新
-3. 拡張機能を再読み込み
-
-</details>
-
-<details>
-<summary><strong>❌ "Catalog file is missing for locale en"</strong></summary>
-
-**原因**: 国際化ファイルが不足している
-
-**解決方法**:
-1. `_locales/en/messages.json` ファイルが存在することを確認
-2. ファイルが正しい形式であることを確認
-
-</details>
-
-<details>
-<summary><strong>❌ ファイルがプレビューされない</strong></summary>
-
-**原因**: 権限設定やAPI有効化の問題
-
-**解決方法**:
-1. Google Drive APIが有効になっていることを確認
-2. OAuth同意画面で正しいスコープが設定されていることを確認
-3. テストユーザーとして自分が追加されていることを確認
-
-</details>
-
-<details>
-<summary><strong>❌ 認証画面が表示されない</strong></summary>
-
-**原因**: ポップアップブロックまたは拡張機能の権限問題
-
-**解決方法**:
-1. ポップアップブロックを無効にする
-2. Chrome拡張機能の権限を確認
-3. Chromeを再起動
-
-</details>
-
-## 🛡️ プライバシーとセキュリティ
-
-- **データの取り扱い**: ファイルデータはローカルでのみ処理され、外部サーバーに送信されません
-- **権限**: 読み取り専用権限のみを使用（ファイルの変更・削除は不可）
-- **認証**: Google OAuth2による安全な認証
-- **ローカル実行**: すべての処理はブラウザ内で完結
-
-## 🤝 コントリビューション
-
-プロジェクトへの貢献を歓迎します！
-
-### 開発環境のセットアップ
-
-```bash
-git clone https://github.com/overdozer1124/drive-contents-viewer.git
-cd drive-contents-viewer
+```
+drive-contents-viewer/
+├── manifest.json          # 拡張機能の設定
+├── background.js          # バックグラウンドスクリプト
+├── preview.html           # メインUI
+├── preview.js             # UI制御ロジック
+├── content_script.js      # コンテンツスクリプト
+└── _locales/             # 多言語対応
+    └── en/
+        └── messages.json
 ```
 
-### バグ報告・機能要望
+### ローカル開発
 
-[Issues](https://github.com/overdozer1124/drive-contents-viewer/issues)から報告してください。
+1. **リポジトリのフォーク**
+   ```bash
+   git clone https://github.com/your-username/drive-contents-viewer.git
+   ```
 
-### プルリクエスト
+2. **開発サーバーの起動**
+   ```bash
+   # 特別なサーバーは不要
+   # Chromeに直接読み込んで開発
+   ```
 
-1. フォークを作成
-2. 機能ブランチを作成 (`git checkout -b feature/amazing-feature`)
-3. 変更をコミット (`git commit -m 'Add some amazing feature'`)
-4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
-5. プルリクエストを作成
+3. **デバッグ**
+   - Chrome DevToolsでコンソールを確認
+   - `background.js`のログを確認
+
+## 🤝 貢献方法
+
+貢献を歓迎します！詳細は[CONTRIBUTING.md](CONTRIBUTING.md)をご覧ください。
+
+### 🐛 バグ報告
+
+- [Issue Template](https://github.com/overdozer1124/drive-contents-viewer/issues/new?template=bug_report.md)を使用
+
+### ✨ 機能要望
+
+- [Feature Request Template](https://github.com/overdozer1124/drive-contents-viewer/issues/new?template=feature_request.md)を使用
+
+### 🔄 プルリクエスト
+
+1. フォークしてブランチを作成
+2. 変更を実装
+3. テストを実行
+4. プルリクエストを送信
+
+## 🔒 セキュリティ
+
+セキュリティの問題を発見した場合は、[SECURITY.md](SECURITY.md)の手順に従って報告してください。
 
 ## 📄 ライセンス
 
-このプロジェクトは [MIT License](LICENSE) の下で公開されています。
+このプロジェクトはMIT Licenseの下で公開されています。詳細は[LICENSE](LICENSE)ファイルをご覧ください。
 
 ## 🙏 謝辞
 
 - Google Drive API
-- Chrome Extensions API
-- すべてのコントリビューター
+- Chrome Extension API
+- オープンソースコミュニティ
 
 ## 📞 サポート
 
-- **バグ報告**: [GitHub Issues](https://github.com/overdozer1124/drive-contents-viewer/issues)
-- **機能要望**: [GitHub Discussions](https://github.com/overdozer1124/drive-contents-viewer/discussions)
-- **質問**: [GitHub Discussions](https://github.com/overdozer1124/drive-contents-viewer/discussions)
+- **Issues**: [GitHub Issues](https://github.com/overdozer1124/drive-contents-viewer/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/overdozer1124/drive-contents-viewer/discussions)
+- **Email**: [プロジェクトページ](https://github.com/overdozer1124/drive-contents-viewer)のContactから
 
 ---
 
-**⭐ このプロジェクトが気に入ったら、GitHubでスターを付けてください！**
+**⭐ このプロジェクトが役に立ったら、ぜひスターを付けてください！**
