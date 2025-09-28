@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Drive Contents Viewer",
+  "version": "1.0.0",
+  "description": "Enhanced view of Google Drive folder contents with customizable layouts",
+  "default_locale": "en",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "identity"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*",
+    "https://drive.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_title": "Open Drive Content Preview"
+  },
+  "oauth2": {
+    "client_id": "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/drive.metadata.readonly"
+    ]
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
