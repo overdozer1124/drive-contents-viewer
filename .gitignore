@@ -1,0 +1,49 @@
+# Chrome Extension Development
+*.crx
+*.pem
+key.pem
+
+# OAuth Configuration (sensitive)
+# Note: manifest.json with real client_id should be configured locally
+config.json
+
+# Development and Test Files
+*_test.*
+*_temp.*
+*.backup
+manifest_original.json
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+tmp/
+temp/
+
+# Node.js (if using build tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Package Files
+*.zip
+*.tar.gz
+*.rar
