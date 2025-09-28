@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Contents Viewer</title>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            font-size: 18px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 0;
+            margin-bottom: 0px;
+            position: sticky;
+            top: 0;
+            background-color: #fafafa;
+            z-index: 1000;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 3px;
+            background-color: #fafafa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        #column-slider {
+            flex-grow: 1;
+            max-width: 200px;
+        }
+
+        #column-value {
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .orientation-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        #content-container {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .file-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: move;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .file-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .file-item.dragging {
+            opacity: 0.5;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .file-name {
+            padding: 5px;
+            font-weight: bold;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-title {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0 60px; /* 両サイドのリンク用のスペース */
+        }
+
+        .file-action {
+            visibility: hidden;
+            font-size: 0.8em;
+            color: #1a73e8;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .file-view {
+            left: 5px;
+        }
+
+        .copy-link {
+            right: 5px;
+        }
+
+        .file-item:hover .file-action {
+            visibility: visible;
+        }
+
+        .file-action:hover {
+            background-color: #e8f0fe;
+        }
+
+        .copy-feedback {
+            color: #4CAF50;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-feedback.show {
+            opacity: 1;
+        }
+        .file-preview {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .file-preview iframe,
+        .file-preview img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .file-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #f1f3f4;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .file-link:hover {
+            background-color: #e8f0fe;
+        }
+
+        .vertical-global #content-container {
+            display: grid;
+            grid-gap: 20px;
+            grid-auto-flow: row dense;
+        }
+
+        .vertical-global .file-preview {
+            padding-bottom: 141%;
+        }
+
+        @media (max-width: 1024px) {
+            #content-container,
+            .vertical-global #content-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #content-container,
+            .vertical-global #content-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Drive Contents Viewer<span id="folder-name"></span></h1>
+        <div class="controls">
+            <div id="slider-container">
+                <span>表示列数:</span>
+                <input type="range" id="column-slider" min="1" max="5" value="3">
+                <span id="column-value">3</span>
+            </div>
+            <div class="orientation-controls">
+                <span>全体の表示:</span>
+                <label>
+                    <input type="radio" name="orientation" value="horizontal" checked> 横長
+                </label>
+                <label>
+                    <input type="radio" name="orientation" value="vertical"> 縦長
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="content-container">
+        Loading...
+    </div>
+
+    <script src="preview.js"></script>
+</body>
+</html>
